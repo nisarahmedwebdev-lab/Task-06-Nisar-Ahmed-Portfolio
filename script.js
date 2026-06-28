@@ -2,22 +2,26 @@ const themeBtn = document.getElementById("themeBtn");
 const sunIcon = themeBtn.querySelector(".sun-icon");
 const moonIcon = themeBtn.querySelector(".moon-icon");
 
-if (localStorage.getItem("theme") === "light") {
-    document.body.classList.add("light");
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-theme");
+    sunIcon.style.display = "block";
+    moonIcon.style.display = "none";
+} else {
+    document.body.classList.remove("dark-theme");
     sunIcon.style.display = "none";
     moonIcon.style.display = "block";
 }
 
 themeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("light");
-    if (document.body.classList.contains("light")) {
-        localStorage.setItem("theme", "light");
-        sunIcon.style.display = "none";
-        moonIcon.style.display = "block";
-    } else {
+    document.body.classList.toggle("dark-theme");
+    if (document.body.classList.contains("dark-theme")) {
         localStorage.setItem("theme", "dark");
         sunIcon.style.display = "block";
         moonIcon.style.display = "none";
+    } else {
+        localStorage.setItem("theme", "light");
+        sunIcon.style.display = "none";
+        moonIcon.style.display = "block";
     }
 });
 
