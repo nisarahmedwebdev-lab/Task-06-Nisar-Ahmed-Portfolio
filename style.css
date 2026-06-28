@@ -177,7 +177,6 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
 }
 
 .grid-overlay {
@@ -215,11 +214,11 @@ section {
 }
 
 .hero h1 {
-    font-size: clamp(40px, 7vw, 84px);
+    font-size: clamp(36px, 7vw, 84px);
     font-weight: 800;
-    line-height: 1;
+    line-height: 1.1;
     letter-spacing: -2px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .hero h2 {
@@ -238,21 +237,24 @@ section {
 
 .hero-wrapper {
     max-width: 1200px;
+    width: 100%;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 40px;
-    min-height: 90vh;
-    padding: 50px 20px;
 }
 
 .hero-content {
     width: 55%;
+    text-align: left;
 }
 
 .hero-image {
     position: relative;
+    width: 40%;
+    display: flex;
+    justify-content: center;
 }
 
 .code-symbol {
@@ -262,6 +264,7 @@ section {
     font-weight: 700;
     opacity: .8;
     animation: float 3s ease-in-out infinite;
+    z-index: 2;
 }
 
 .symbol1 {
@@ -316,7 +319,7 @@ section {
     color: var(--muted);
     font-size: 15px;
     max-width: 600px;
-    margin: 0 auto 35px;
+    margin: 0 0 35px 0;
     line-height: 1.7;
 }
 
@@ -324,7 +327,7 @@ section {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     margin-bottom: 40px;
 }
 
@@ -340,7 +343,7 @@ section {
 .buttons {
     display: flex;
     gap: 15px;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .btn {
@@ -355,7 +358,6 @@ section {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: transform 0.2s ease, box-shadow 0.2s;
-    /* Fixed 'standard' timing issue */
     border: none;
     cursor: pointer;
 }
@@ -775,6 +777,10 @@ footer p {
     transform: translateY(0);
 }
 
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES (UPDATED & FIXED)
+   ========================================================================== */
+
 @media(max-width: 1024px) {
     .projects-container {
         grid-template-columns: 1fr;
@@ -783,30 +789,61 @@ footer p {
 
 @media(max-width: 768px) {
 
-    /* Consolidated all 768px elements under a unified query block */
+    /* Hero section fix: Height ko auto kiya taake content squeeze na ho */
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding-top: 120px;
+        padding-bottom: 60px;
+        display: flex;
+        align-items: center;
+    }
+
     .hero-wrapper {
         flex-direction: column-reverse;
+        /* Image upar, text neeche */
+        text-align: center;
+        gap: 35px;
+        padding: 0;
+    }
+
+    .hero-content {
+        width: 100%;
         text-align: center;
     }
 
-    .hero-content,
     .hero-image {
         width: 100%;
     }
 
+    /* Mobile ke liye image frame size normal kiya */
     .image-frame {
         width: 280px;
         height: 280px;
+        border-radius: 30px 30px 80px 30px;
     }
 
+    .hero p {
+        margin: 0 auto 35px;
+    }
+
+    .developer-tags,
+    .buttons {
+        justify-content: center;
+    }
+
+    /* Baki sections padding adjust ki */
     section {
-        padding: 110px 6% 60px;
+        padding: 100px 6% 60px;
+        height: auto;
+        min-height: 100vh;
     }
 
     .header {
         padding: 0 6%;
     }
 
+    /* Navigation menu drawer fix */
     .nav {
         position: fixed;
         top: 70px;
@@ -861,5 +898,28 @@ footer p {
         flex-direction: column;
         gap: 20px;
         text-align: center;
+    }
+}
+
+/* Chote mobile phones ke liye Mazeed Styling */
+@media(max-width: 480px) {
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .image-frame {
+        width: 240px;
+        height: 240px;
     }
 }
