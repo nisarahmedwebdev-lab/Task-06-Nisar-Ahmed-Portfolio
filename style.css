@@ -747,23 +747,47 @@ footer p {
 }
 
 #top {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
     background: var(--card);
     border: 1px solid var(--border);
-    width: 36px;
-    height: 36px;
-    border-radius: 4px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--muted);
-    font-size: 14px;
-    transition: all 0.2s;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#top.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
 #top:hover {
     border-color: var(--text);
     color: var(--text);
+    transform: translateY(-3px);
+}
+
+@media(max-width: 768px) {
+    #top {
+        bottom: 80px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
 }
 
 .reveal {
@@ -777,9 +801,30 @@ footer p {
     transform: translateY(0);
 }
 
-/* ==========================================================================
-   RESPONSIVE MEDIA QUERIES (UPDATED & FIXED)
-   ========================================================================== */
+.whatsapp-sticky {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #ffffff !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    z-index: 9999;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.whatsapp-sticky:hover {
+    transform: translateY(-5px);
+    background-color: #20ba5a;
+}
 
 @media(max-width: 1024px) {
     .projects-container {
@@ -788,8 +833,6 @@ footer p {
 }
 
 @media(max-width: 768px) {
-
-    /* Hero section fix: Height ko auto kiya taake content squeeze na ho */
     .hero {
         height: auto;
         min-height: 100vh;
@@ -801,7 +844,6 @@ footer p {
 
     .hero-wrapper {
         flex-direction: column-reverse;
-        /* Image upar, text neeche */
         text-align: center;
         gap: 35px;
         padding: 0;
@@ -816,7 +858,6 @@ footer p {
         width: 100%;
     }
 
-    /* Mobile ke liye image frame size normal kiya */
     .image-frame {
         width: 280px;
         height: 280px;
@@ -832,7 +873,6 @@ footer p {
         justify-content: center;
     }
 
-    /* Baki sections padding adjust ki */
     section {
         padding: 100px 6% 60px;
         height: auto;
@@ -843,7 +883,6 @@ footer p {
         padding: 0 6%;
     }
 
-    /* Navigation menu drawer fix */
     .nav {
         position: fixed;
         top: 70px;
@@ -899,9 +938,15 @@ footer p {
         gap: 20px;
         text-align: center;
     }
+
+    .whatsapp-sticky {
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 14px;
+        font-size: 12px;
+    }
 }
 
-/* Chote mobile phones ke liye Mazeed Styling */
 @media(max-width: 480px) {
     .hero h1 {
         font-size: 34px;
